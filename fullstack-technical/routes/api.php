@@ -24,7 +24,7 @@ Route::post('/orders', [OrderController::class, 'orders']);
 Route::get('/orders', [OrderController::class, 'ordersList']);
 Route::get('/orders/{id}', [OrderController::class, 'show']);
 Route::get('/orders/{id}/edit', [OrderController::class, 'edit']);
-Route::put('/orders/{id}', [OrderController::class, 'update']);
+Route::put('/orders/{id}', [OrderController::class, 'updateorder']);
 Route::delete('/orders/{id}', [OrderController::class, 'delete']);
 });
 

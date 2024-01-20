@@ -14,7 +14,7 @@ class OrderController extends Controller
 
     public function ordersList()
     {
-        $orders = Order::select('product_id', 'product_name', 'quantity', 'created_at')->get();
+        $orders = Order::select('id', 'product_id', 'product_name', 'quantity', 'created_at')->get();
         return response()->json(
             $orders
     , 200);
@@ -48,40 +48,47 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $order = Order::findOrFail($id, ['product_id', 'quantity']);
-        return response()->json([
+        $order = Order::findOrFail($id, ['id', 'product_id', 'product_name','quantity']);
+        return response()->json(
             $order
-        ], 200);
+        , 200);
     }
 
     public function edit($id)
     {
-        $order = Order::findOrFail($id, ['product_id', 'quantity', 'created_at']);
+        $order = Order::findOrFail($id, ['id', 'product_id', 'quantity', 'created_at']);
         return response()->json([
             $order
         ], 200);
     }
 
-    public function update(Request $request, $id)
+    public function updateorder(Request $request, $id)
     {
+
         $product = Product::find($request->product_id);
         if ($request->quantity > $product->available_stock) {
             return response()->json([
                 'message' => 'Failed to order this product due to unavailability of the stock'
             ], 400);
         }
-        $order = Order::findOrFail($id, ['product_id', 'quantity', 'created_at']);
-
+        
         $request->validate([
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|numeric|min:1',
         ]);
 
-        $order->update($request->all());
+        $order = Order::findOrFail($id, ['id', 'product_id', 'product_name', 'quantity', 'updated_at']);
+        $order->update([
+            'product_id' => $request->product_id,
+            'product_name' => $product->name,
+            'quantity' => $request->quantity,
+            'updated_at' => now(),
+        ]
+        );
 
-        return response()->json([
+        return response()->json(
             $order
-        ], 201);
+        , 201);
     }
 
     public function delete($id)

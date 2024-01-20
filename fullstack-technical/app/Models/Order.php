@@ -12,6 +12,7 @@ class Order extends Model
         'product_id',
         'product_name',
         'quantity',
+        'updated_at'
     ];
 
     public function product()
