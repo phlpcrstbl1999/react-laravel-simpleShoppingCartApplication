@@ -38,7 +38,7 @@ const RegisterComponent = () => {
       setFormData({ name: '', email: '', password: '' });
     } catch (error) {
       setOpen(true);
-      setAlert({message: "Email Already Taken", severity: "info"});
+      setAlert({message: "Error Register", severity: "info"});
       console.error('Error during registration:', error);
     } finally {
       setLoading(false);
