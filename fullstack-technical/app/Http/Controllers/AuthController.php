@@ -12,6 +12,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
+
+        $existingUser = User::where('email', $request->email)->first();
+
+        if ($existingUser) {
+            return response()->json([
+                'message' => 'The email address is already taken.',
+                ], 400);
+            }
         $request->validate([
             'email' => 'required|string|email|max:255|unique:users,email',
         ]);
@@ -29,8 +37,9 @@ class AuthController extends Controller
         ], 201);
     } catch (ValidationException $e) {
         return response()->json([
-            'message' => 'The email address is already taken.',
-        ], 400);
+            'message' => 'Registration failed',
+            'errors' => $e->validator->errors(),
+        ], 422);
     } 
     }
     public function login(Request $request)
