@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RegistrationForm = () => {
+const RegisterComponent = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,7 +32,6 @@ const RegistrationForm = () => {
 
   return (
     <div>
-      <h2>Registration Form</h2>
       <form onSubmit={(e) => e.preventDefault()}>
         <label>Name:</label>
         <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
@@ -51,4 +50,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default RegisterComponent;

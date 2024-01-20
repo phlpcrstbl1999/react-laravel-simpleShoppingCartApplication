@@ -1,13 +1,13 @@
 import React from 'react';
-import LoginForm from './components/LoginComponent';
-import RegistrationForm from './components/RegisterComponent';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 const App = () => {
   return (
     <div>
-      <LoginForm />
+      <LoginPage />
       <hr></hr>
-      <RegistrationForm />
+      <RegisterPage />
     </div>
   );
 };
