@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -17,7 +18,7 @@ class AuthController extends Controller
 
         if ($existingUser) {
             return response()->json([
-                'message' => 'The email address is already taken.',
+                'message' => 'Email already taken',
                 ], 400);
             }
         $request->validate([
@@ -39,7 +40,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Registration failed',
             'errors' => $e->validator->errors(),
-        ], 422);
+        ], 400);
     } 
     }
     public function login(Request $request)
