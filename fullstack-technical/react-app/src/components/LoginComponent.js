@@ -16,7 +16,9 @@ const LoginComponent = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:8000/api/login', loginData);
+      const token = response.data.access_token;
       const data = response.data;
+      localStorage.setItem('authToken', token);
       console.log(data);
       if (response.status === 201) {
         navigate('/order');

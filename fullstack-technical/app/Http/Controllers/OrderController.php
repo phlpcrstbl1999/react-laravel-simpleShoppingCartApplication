@@ -14,10 +14,10 @@ class OrderController extends Controller
 
     public function ordersList()
     {
-        $orders = Order::select('product_id', 'quantity', 'created_at')->get();
-        return response()->json([
+        $orders = Order::select('product_id', 'product_name', 'quantity', 'created_at')->get();
+        return response()->json(
             $orders
-    ], 200);
+    , 200);
     }
 
     public function orders(Request $request)
@@ -36,6 +36,7 @@ class OrderController extends Controller
 
         Order::create([
             'product_id' => $request->product_id,
+            'product_name' => $product->name,
             'quantity' => $request->quantity,
             'created_at' => now(),
         ]);

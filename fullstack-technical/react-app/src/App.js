@@ -2,6 +2,8 @@ import React from 'react';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import OrderPage from './pages/OrderPage';
+import CreateOrderPage from './pages/CreateOrderPage';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 const App = () => {
@@ -12,6 +14,7 @@ const App = () => {
               <Route path="/" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/order" element={<OrderPage />} />
+              <Route path="/create-order" element={<CreateOrderPage />} />
             </Routes>
           </Router>
     </div>

@@ -10,9 +10,9 @@ class ProductController extends Controller
     public function products()
     {
         $products = Product::select('id', 'name', 'available_stock')->get();
-        return response()->json([
+        return response()->json(
             $products
-        ], 200);
+        , 200);
     }
 
 }
