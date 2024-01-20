@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './registerComponent.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginComponent from './LoginComponent';
+import '../styles/registerComponent.css';
 
 const RegisterComponent = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +32,7 @@ const RegisterComponent = () => {
   };
 
   return (
+    <div className="wrapper">
     <form onSubmit={(e) => e.preventDefault()}>
     <div className="register-container">
       <h1>Register</h1>
@@ -54,7 +53,7 @@ const RegisterComponent = () => {
         </div>
     </div>
     </form>
-
+    </div>
   );
 };
 
