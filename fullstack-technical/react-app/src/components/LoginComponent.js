@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './loginComponent.css';
 const LoginComponent = () => {
   const [loginData, setLoginData] = useState({
     email: '',
@@ -23,19 +23,26 @@ const LoginComponent = () => {
   };
 
   return (
-    <div>
-      <form>
-        <label>Email:</label>
-        <input type="email" name="email" onChange={handleInputChange} />
+    <form>
+    <div className="login-container">
+      
+      <h1>Login</h1>
+      <div className="input-box">
+        <input type="email" name="email" placeholder="Email" onChange={handleInputChange} />
+      </div>
+      <div className="input-box">
+        <input type="password" name="password" placeholder="Password" onChange={handleInputChange} />
+      </div>
+       
 
-        <label>Password:</label>
-        <input type="password" name="password" onChange={handleInputChange} />
-
-        <button type="button" onClick={handleLogin}>
+        <button type="button" className="login-btn" onClick={handleLogin}>
           Login
         </button>
-      </form>
+        <div className="register-link">
+          <p>Don't have an account? <a href="/">Register</a></p>
+        </div>
     </div>
+    </form>
   );
 };
 

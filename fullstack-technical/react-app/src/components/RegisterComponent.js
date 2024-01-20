@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './registerComponent.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginComponent from './LoginComponent';
 
 const RegisterComponent = () => {
   const [formData, setFormData] = useState({
@@ -31,22 +34,27 @@ const RegisterComponent = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <label>Name:</label>
-        <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
-
-        <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
-
-        <label>Password:</label>
-        <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
-
-        <button type="button" onClick={handleRegistration} disabled={loading}>
+    <form onSubmit={(e) => e.preventDefault()}>
+    <div className="register-container">
+      <h1>Register</h1>
+      <div className="input-box">
+        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleInputChange} />
+      </div>
+      <div className="input-box">
+        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} />
+      </div>
+      <div className="input-box">
+        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleInputChange} />
+      </div>
+        <button type="button" className="register-btn" onClick={handleRegistration} disabled={loading}>
           {loading ? 'Registering...' : 'Register'}
         </button>
-      </form>
+        <div className="login-link">
+          <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
     </div>
+    </form>
+
   );
 };
 
